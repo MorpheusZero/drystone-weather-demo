@@ -1,13 +1,34 @@
 import * as express from 'express';
 import { BaseRouter } from '../base.router';
+import * as request from 'request';
 
 export class WeatherRouter extends BaseRouter {
+
+    /**
+     * The OpenWeatherMap API Key that is required for all requests.
+     */
+    private apiKey?: string;
+
+    /**
+     * The base gateway URL for communicating with the OpenWeatherMap APIs.
+     */
+    private gatewayUrl?: string;
+
+    /**
+     * A mapping of which type of route we can hit for the OpenWeatherMap API.
+     */
+    private readonly routeMapping: any = Object.freeze({
+        CURRENT_WEATHER: 'weather',
+        FIVE_DAY_FORECAST: 'forecast'
+    });
 
     /**
      * Default Constructor
      */
     constructor() {
         super();
+        this.apiKey = process.env.OPEN_WEATHER_MAP_API_KEY ? process.env.OPEN_WEATHER_MAP_API_KEY : '';
+        this.gatewayUrl = process.env.OPEN_WEATHER_MAP_GATEWAY ? process.env.OPEN_WEATHER_MAP_GATEWAY : '';
         this.buildRoutes();
     }
 
@@ -19,9 +40,28 @@ export class WeatherRouter extends BaseRouter {
      */
     public async getCurrentWeather(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            res.json(Object.freeze({
-                message: 'GET_CURRENT_TEST'
-            }));
+            if(this.isRequestValid(req.query)) {
+                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}?zip=${req.query.zip},us&APPID=${this.apiKey}`;
+                const response: any = await request.get(url);
+                const resData: any = await (new Promise((resolve, reject) => {
+                    request(url, (error, res, body) => {
+                      if (!error && res.statusCode == 200) {
+                        resolve(body);
+                      } else {
+                        reject(error);
+                      }
+                    });
+                  }));
+                res.json(Object.freeze({
+                    data: JSON.parse(resData)
+                }));
+            } else {
+                res.status(400);
+                res.json(Object.freeze({
+                    error: '?zip=xxxxx is a required query param!'
+                }));
+                res.end();
+            }
             next();
         } catch (error) {
             next(error);
@@ -43,6 +83,14 @@ export class WeatherRouter extends BaseRouter {
         } catch (error) {
             next(error);
         }
+    }
+
+    /**
+     * Determines if the request is valid by checking if ZIP was passed as a query param.
+     * @param {any} query The query params associated with the request. We require that zip always be passed.
+     */
+    private isRequestValid(query: any): boolean {
+        return !!query.zip;
     }
 
     /**
