@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const weather_router_1 = require("./api/weather.router");
+const country_router_1 = require("./api/country.router");
 /**
  * Contains all logic necessary to define the routes that the server
  * will have access to and how they are built.
@@ -22,6 +23,7 @@ class Router {
      */
     static initAPIRoutes(app) {
         app.use('/weather', new weather_router_1.WeatherRouter().router);
+        app.use('/countries', new country_router_1.CountryRouter().router);
     }
     /**
      * The View routes define routes that we can call to render HTML from server to client.

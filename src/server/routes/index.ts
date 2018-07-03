@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { WeatherRouter } from './api/weather.router';
+import { CountryRouter } from './api/country.router';
 
 /**
  * Contains all logic necessary to define the routes that the server 
@@ -24,6 +25,7 @@ export class Router {
      */
     private static initAPIRoutes(app: express.Express): void {
         app.use('/weather', new WeatherRouter().router);
+        app.use('/countries', new CountryRouter().router);
     }
 
     /**

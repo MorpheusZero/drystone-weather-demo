@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_router_1 = require("../base.router");
 const request = require("request");
+/**
+ * An OPenWeatherMap API implementation of a few endpoints found here:
+ * https://openweathermap.org/api
+ */
 class WeatherRouter extends base_router_1.BaseRouter {
     /**
      * Default Constructor

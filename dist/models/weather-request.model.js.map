@@ -1,0 +1,1 @@
+{"version":3,"file":"weather-request.model.js","sourceRoot":"","sources":["../../src/models/weather-request.model.ts"],"names":[],"mappings":";;AAAA;;GAEG;AACH;IAkBI;;OAEG;IACH;QACI,IAAI,CAAC,WAAW,GAAG,IAAI,CAAC;QACxB,IAAI,CAAC,GAAG,GAAG,EAAE,CAAC;QACd,IAAI,CAAC,QAAQ,GAAG,EAAE,CAAC;IACvB,CAAC;CAEJ;AA3BD,kDA2BC"}
