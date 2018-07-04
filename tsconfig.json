@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "moduleResolution": "node",
+    "lib": ["es5", "es2015", "dom", "scripthost"],
+    "outDir": "./dist/",
     "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictNullChecks": true
-  }
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "strict": true,
+    "target": "es5",
+    "jsx": "react"
+  },
+  "include": [
+        "./src/**/*"
+    ]
 }

@@ -11,11 +11,11 @@ export class AppServer {
 
     public static async initialize(): Promise<any> {
         try {
-            // This is called first to parse the .env file at the project root and inject our environment variables.
-            require('dotenv').config();
-
             // Initialize the express server.
             AppServer.app = express();
+
+            // Use Static Files
+            AppServer.app.use(express.static('dist'));
 
             // If our deployment has set a port--use that--otherwise, default to the .env port for local.
             AppServer.app.set('port', process.env.PORT || process.env.APP_PORT);

@@ -1,6 +1,7 @@
 import * as express from 'express';
 import { WeatherRouter } from './api/weather.router';
 import { CountryRouter } from './api/country.router';
+import { RootViewRouter } from './views/root-view.router';
 
 /**
  * Contains all logic necessary to define the routes that the server 
@@ -33,6 +34,6 @@ export class Router {
      * @param {express.Express} app Instance of the running application.
      */
     private static initViewRoutes(app: express.Express): void {
-        // app.use('/', new ClientRouter().router);
+        app.use('/', new RootViewRouter().router);
     }
 }

@@ -34,6 +34,7 @@ export class WeatherRouter extends BaseRouter {
         super();
         this.apiKey = process.env.OPEN_WEATHER_MAP_API_KEY ? process.env.OPEN_WEATHER_MAP_API_KEY : '';
         this.gatewayUrl = process.env.OPEN_WEATHER_MAP_GATEWAY ? process.env.OPEN_WEATHER_MAP_GATEWAY : '';
+        console.log(this);
         this.buildRoutes();
     }
 
@@ -45,6 +46,7 @@ export class WeatherRouter extends BaseRouter {
      */
     public async getCurrentWeather(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
+            console.log(req.query);
             if(this.isRequestValid(req.query)) {
                 // todo: params
                 const params = ``;
