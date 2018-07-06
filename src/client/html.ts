@@ -8,7 +8,16 @@ const html = ({ body, title }: { body: string, title: string }) => `
   <!DOCTYPE html>
   <html>
     <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>${title}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="dylan legendre, weather" />
+      <meta name="description" content="An SSR React App demo implementing Open APIs" />
+      <meta name="author" content="Dylan Legendre" />
+      <meta name="copyright" content="Copyright &copy; 2018. All Rights Reserved." />
+      <base href="/">
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body style="margin:0">
       <div id="app">${body}</div>

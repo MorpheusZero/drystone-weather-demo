@@ -3,7 +3,11 @@
 const paths = require('./paths');
 
 module.exports = {
-  entry: paths.appServerTs,
+  entry: [
+    paths.appServerTs,
+    paths.appStyles
+  ],
+  mode: 'development',
   output: {
     filename: "app.server.js",
     path: paths.appDist,
@@ -30,13 +34,22 @@ module.exports = {
       // smaller than specified limit in bytes as data URLs to avoid requests.
       // A missing `test` is equivalent to a match.
       {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ico$/],
         loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]',
         },
       },
+
+      // Load all CSS
+      {
+        test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        options: {
+          name: 'static/css/[name].[hash:8].[ext]'
+        }
+      }
     ]
   }
 };

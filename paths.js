@@ -10,5 +10,6 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   appDist: resolveApp('dist'),
-  appServerTs: resolveApp('src/app.ts')
+  appServerTs: resolveApp('src/app.ts'),
+  appStyles: resolveApp('src/client/styles.css')
 }
