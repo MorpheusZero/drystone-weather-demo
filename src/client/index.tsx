@@ -3,10 +3,9 @@ import { render } from 'react-dom';
 import App from './App';
 
 /**
- * Import any global CSS
+ * For Bootstrap JQUERY
  */
-// import 'normalize.css';
-// require('normalize.css');
+require('bootstrap');
 
 /**
  * Bootstrap the application

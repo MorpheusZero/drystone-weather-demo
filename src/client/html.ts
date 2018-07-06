@@ -18,8 +18,10 @@ const html = ({ body, title }: { body: string, title: string }) => `
       <meta name="copyright" content="Copyright &copy; 2018. All Rights Reserved." />
       <base href="/">
       <link rel="icon" type="image/x-icon" href="favicon.ico">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+      <link rel="stylesheet" href="static/css/styles.css">
     </head>
-    <body style="margin:0">
+    <body>
       <div id="app">${body}</div>
     </body>
   </html>

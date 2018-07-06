@@ -1,13 +1,14 @@
 'use strict';
 
 const paths = require('./paths');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [
     paths.appServerTs,
     paths.appStyles
   ],
-  mode: 'development',
+  mode: "development",
   output: {
     filename: "app.server.js",
     path: paths.appDist,
@@ -16,12 +17,19 @@ module.exports = {
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
-  target: 'node',
+  target: "node",
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
-
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'static/css/styles.css',
+      chunkFilename: 'static/css/styles.css'
+    })
+  ],
   module: {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
@@ -44,11 +52,13 @@ module.exports = {
 
       // Load all CSS
       {
-        test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-        options: {
-          name: 'static/css/[name].[hash:8].[ext]'
-        }
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ],
       }
     ]
   }

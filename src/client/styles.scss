@@ -1,0 +1,13 @@
+/**
+ * Import All CSS here
+ * Webpack will pick up this file and all its imports.
+ */
+
+@import '~normalize.css';
+@import '~bootstrap/scss/bootstrap';
+
+html {
+    body {
+        background-color: pink;
+    }
+}
