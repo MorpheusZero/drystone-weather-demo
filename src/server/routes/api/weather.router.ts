@@ -34,7 +34,6 @@ export class WeatherRouter extends BaseRouter {
         super();
         this.apiKey = process.env.OPEN_WEATHER_MAP_API_KEY ? process.env.OPEN_WEATHER_MAP_API_KEY : '';
         this.gatewayUrl = process.env.OPEN_WEATHER_MAP_GATEWAY ? process.env.OPEN_WEATHER_MAP_GATEWAY : '';
-        console.log(this);
         this.buildRoutes();
     }
 

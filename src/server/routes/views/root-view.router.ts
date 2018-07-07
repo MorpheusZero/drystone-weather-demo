@@ -2,7 +2,7 @@ import * as express from 'express';
 import { BaseRouter } from '../base.router';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from '../../../client/App';
+import HomePage from '../../../client/HomePage';
 import html from '../../../client/html';
 
 /**
@@ -26,8 +26,8 @@ export class RootViewRouter extends BaseRouter {
      */
     public async getRootView(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            const body = renderToString(React.createElement(App));
-            const title = 'DrystoneWeatherDemo';
+            const body = renderToString(React.createElement(HomePage));
+            const title = 'DrystoneWeatherDemo - Home';
           
             res.send(
               html({

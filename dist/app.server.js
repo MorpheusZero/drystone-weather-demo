@@ -74409,10 +74409,10 @@ Store.prototype.getAllCookies = function(cb) {
 /*!************************************************!*\
   !*** ./node_modules/tough-cookie/package.json ***!
   \************************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, contributors, dependencies, deprecated, description, devDependencies, engines, files, homepage, keywords, license, main, name, repository, scripts, version, default */
+/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, contributors, dependencies, description, devDependencies, engines, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"tough-cookie@~2.3.3","_id":"tough-cookie@2.3.4","_inBundle":false,"_integrity":"sha512-TZ6TTfI5NtZnuyy/Kecv+CnoROnyXn2DN97LontgQpCwsX2XyLYCC0ENhYkehSOwAp8rTQKc/NUIF7BkQ5rKLA==","_location":"/tough-cookie","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"tough-cookie@~2.3.3","name":"tough-cookie","escapedName":"tough-cookie","rawSpec":"~2.3.3","saveSpec":null,"fetchSpec":"~2.3.3"},"_requiredBy":["/request"],"_resolved":"https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.4.tgz","_shasum":"ec60cee38ac675063ffc97a5c18970578ee83655","_spec":"tough-cookie@~2.3.3","_where":"X:\\local-dev\\drystone-weather-demo\\node_modules\\request","author":{"name":"Jeremy Stashewsky","email":"jstashewsky@salesforce.com"},"bugs":{"url":"https://github.com/salesforce/tough-cookie/issues"},"bundleDependencies":false,"contributors":[{"name":"Alexander Savin"},{"name":"Ian Livingstone"},{"name":"Ivan Nikulin"},{"name":"Lalit Kapoor"},{"name":"Sam Thompson"},{"name":"Sebastian Mayr"}],"dependencies":{"punycode":"^1.4.1"},"deprecated":false,"description":"RFC6265 Cookies and Cookie Jar for node.js","devDependencies":{"async":"^1.4.2","string.prototype.repeat":"^0.2.0","vows":"^0.8.1"},"engines":{"node":">=0.8"},"files":["lib"],"homepage":"https://github.com/salesforce/tough-cookie","keywords":["HTTP","cookie","cookies","set-cookie","cookiejar","jar","RFC6265","RFC2965"],"license":"BSD-3-Clause","main":"./lib/cookie","name":"tough-cookie","repository":{"type":"git","url":"git://github.com/salesforce/tough-cookie.git"},"scripts":{"suffixup":"curl -o public_suffix_list.dat https://publicsuffix.org/list/public_suffix_list.dat && ./generate-pubsuffix.js","test":"vows test/*_test.js"},"version":"2.3.4"};
+module.exports = {"_args":[["tough-cookie@2.3.4","/Users/dylanlegendre/local-dev/drystone-weather-demo"]],"_from":"tough-cookie@2.3.4","_id":"tough-cookie@2.3.4","_inBundle":false,"_integrity":"sha512-TZ6TTfI5NtZnuyy/Kecv+CnoROnyXn2DN97LontgQpCwsX2XyLYCC0ENhYkehSOwAp8rTQKc/NUIF7BkQ5rKLA==","_location":"/tough-cookie","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"tough-cookie@2.3.4","name":"tough-cookie","escapedName":"tough-cookie","rawSpec":"2.3.4","saveSpec":null,"fetchSpec":"2.3.4"},"_requiredBy":["/node-gyp/request","/request"],"_resolved":"https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.4.tgz","_spec":"2.3.4","_where":"/Users/dylanlegendre/local-dev/drystone-weather-demo","author":{"name":"Jeremy Stashewsky","email":"jstashewsky@salesforce.com"},"bugs":{"url":"https://github.com/salesforce/tough-cookie/issues"},"contributors":[{"name":"Alexander Savin"},{"name":"Ian Livingstone"},{"name":"Ivan Nikulin"},{"name":"Lalit Kapoor"},{"name":"Sam Thompson"},{"name":"Sebastian Mayr"}],"dependencies":{"punycode":"^1.4.1"},"description":"RFC6265 Cookies and Cookie Jar for node.js","devDependencies":{"async":"^1.4.2","string.prototype.repeat":"^0.2.0","vows":"^0.8.1"},"engines":{"node":">=0.8"},"files":["lib"],"homepage":"https://github.com/salesforce/tough-cookie","keywords":["HTTP","cookie","cookies","set-cookie","cookiejar","jar","RFC6265","RFC2965"],"license":"BSD-3-Clause","main":"./lib/cookie","name":"tough-cookie","repository":{"type":"git","url":"git://github.com/salesforce/tough-cookie.git"},"scripts":{"suffixup":"curl -o public_suffix_list.dat https://publicsuffix.org/list/public_suffix_list.dat && ./generate-pubsuffix.js","test":"vows test/*_test.js"},"version":"2.3.4"};
 
 /***/ }),
 
@@ -78369,10 +78369,10 @@ console.log(('App is listening on port %d'), server_1.AppServer.app.get('port'))
 
 /***/ }),
 
-/***/ "./src/client/App.tsx":
-/*!****************************!*\
-  !*** ./src/client/App.tsx ***!
-  \****************************/
+/***/ "./src/client/HomePage.tsx":
+/*!*********************************!*\
+  !*** ./src/client/HomePage.tsx ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78380,40 +78380,135 @@ console.log(('App is listening on port %d'), server_1.AppServer.app.get('port'))
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var Clouds_1 = __webpack_require__(/*! ./components/Clouds */ "./src/client/components/Clouds/index.tsx");
+var UserInput_1 = __webpack_require__(/*! ./components/UserInput */ "./src/client/components/UserInput/index.tsx");
 // const testImage = require('./image.png');
-var App = function () {
-    return (React.createElement("div", { className: "container" },
-        React.createElement("div", { className: "row" },
-            React.createElement("div", { className: "col-sm" }, "One of three columns"),
-            React.createElement("div", { className: "col-sm" }, "PLACEHOLDER"),
-            React.createElement("div", { className: "col-sm" }, "One of three columns"))));
+var HomePage = function () {
+    return (React.createElement("div", null,
+        React.createElement(Clouds_1.Clouds, null),
+        React.createElement(UserInput_1.UserInput, null)));
 };
-exports.default = App;
+exports.default = HomePage;
 
 
 /***/ }),
 
-/***/ "./src/client/html.ts":
-/*!****************************!*\
-  !*** ./src/client/html.ts ***!
-  \****************************/
+/***/ "./src/client/components/Clouds/index.tsx":
+/*!************************************************!*\
+  !*** ./src/client/components/Clouds/index.tsx ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Html
- * This Html.ts file acts as a template that we insert all our generated
- * application code into before sending it to the client as regular HTML.
- * Note we're returning a template string from this function.
- */
-var html = function (_a) {
-    var body = _a.body, title = _a.title;
-    return "\n  <!DOCTYPE html>\n  <html>\n    <head>\n      <meta charset=\"utf-8\">\n      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n      <title>" + title + "</title>\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <meta name=\"keywords\" content=\"dylan legendre, weather\" />\n      <meta name=\"description\" content=\"An SSR React App demo implementing Open APIs\" />\n      <meta name=\"author\" content=\"Dylan Legendre\" />\n      <meta name=\"copyright\" content=\"Copyright &copy; 2018. All Rights Reserved.\" />\n      <base href=\"/\">\n      <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n      <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500\">\n      <link rel=\"stylesheet\" href=\"static/css/styles.css\">\n    </head>\n    <body>\n      <div id=\"app\">" + body + "</div>\n    </body>\n  </html>\n";
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+exports.Clouds = function () {
+    return (React.createElement("div", { id: "background-wrap" },
+        React.createElement("div", { className: "x1" },
+            React.createElement("div", { className: "cloud" })),
+        React.createElement("div", { className: "x2" },
+            React.createElement("div", { className: "cloud" })),
+        React.createElement("div", { className: "x3" },
+            React.createElement("div", { className: "cloud" })),
+        React.createElement("div", { className: "x4" },
+            React.createElement("div", { className: "cloud" })),
+        React.createElement("div", { className: "x5" },
+            React.createElement("div", { className: "cloud" }))));
 };
-exports.default = html;
+
+
+/***/ }),
+
+/***/ "./src/client/components/UserInput/index.tsx":
+/*!***************************************************!*\
+  !*** ./src/client/components/UserInput/index.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/**
+ * The action types we support for the button click handler.
+ */
+var ACTION_TYPES;
+(function (ACTION_TYPES) {
+    ACTION_TYPES["SUBMIT"] = "submit";
+    ACTION_TYPES["DEFAULT_COUNTRY"] = "default_country";
+    ACTION_TYPES["OTHER_COUNTRY"] = "other_country";
+    ACTION_TYPES["SELECT_COUNTRY"] = "select_country";
+    ACTION_TYPES["CHECK_CURRENT"] = "check_current";
+    ACTION_TYPES["CHECK_FIVE_DAY"] = "check_five_day";
+})(ACTION_TYPES || (ACTION_TYPES = {}));
+/**
+ * Handles the main view and user input for the weather app.
+ */
+var UserInput = /** @class */ (function (_super) {
+    __extends(UserInput, _super);
+    /**
+     * Default Constructor
+     * @param props
+     */
+    function UserInput(props) {
+        var _this = _super.call(this, props) || this;
+        /**
+         * The public handler for all button clicks in the view.
+         * @param $event The event and element that started the event.
+         * @param action The action we are wanting to perform that the handler will switch on.
+         */
+        _this.handleClick = function () {
+            console.log('GOT HERE');
+            alert('TEST');
+        };
+        return _this;
+        // Set the default state of the component.
+        //this.handleClick = this.handleClick.bind(this);
+    }
+    UserInput.prototype.buildCountrySelectBox = function () {
+        var htmlStart = "\n        <div className=\"form-group\">\n            <label htmlFor=\"lstCountries\">Select Country</label>\n            <select className=\"form-control\" id=\"lstCountries\">\n                <option>1</option>\n                <option>2</option>\n                <option>3</option>\n                <option>4</option>\n                <option>5</option>\n            </select>\n        </div>\n        ";
+        return htmlStart;
+    };
+    UserInput.prototype.render = function () {
+        var _this = this;
+        return (React.createElement("div", { className: "container" },
+            React.createElement("div", { className: "row" },
+                React.createElement("div", { className: "col-sm-12" },
+                    React.createElement("div", { className: "input-wrapper" },
+                        React.createElement("h2", null, "Drystone Weather"),
+                        React.createElement("button", { onClick: function () { return _this.handleClick(); }, type: "button", className: "btn btn--default" }, "TEST"),
+                        React.createElement("form", null,
+                            React.createElement("div", { className: "form-group" },
+                                React.createElement("label", { htmlFor: "areaInput" }, "Where are you?"),
+                                React.createElement("input", { type: "text", className: "form-control", id: "areaInput", placeholder: "Zipcode or City Name" })),
+                            React.createElement("div", { className: "form-group" },
+                                React.createElement("div", { className: "form-check form-check-inline" },
+                                    React.createElement("input", { className: "form-check-input", type: "radio", name: "countryDefault", id: "chkDefaultCountry", value: "defaultCountry", checked: true }),
+                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkDefaultCountry" }, "United States")),
+                                React.createElement("div", { className: "form-check form-check-inline" },
+                                    React.createElement("input", { className: "form-check-input", type: "radio", name: "countryDefault", id: "chkOtherCountry", value: "otherCountry" }),
+                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkOtherCountry" }, "Other")),
+                                this.state ? (this.state.countryType.valueOf() === ACTION_TYPES.OTHER_COUNTRY.valueOf() ? this.buildCountrySelectBox() : '') : ''),
+                            React.createElement("button", { type: "submit", className: "btn btn-primary" }, "Submit")))))));
+    };
+    ;
+    return UserInput;
+}(React.Component));
+exports.UserInput = UserInput;
+;
 
 
 /***/ }),
@@ -78734,7 +78829,6 @@ var WeatherRouter = /** @class */ (function (_super) {
         });
         _this.apiKey = process.env.OPEN_WEATHER_MAP_API_KEY ? process.env.OPEN_WEATHER_MAP_API_KEY : '';
         _this.gatewayUrl = process.env.OPEN_WEATHER_MAP_GATEWAY ? process.env.OPEN_WEATHER_MAP_GATEWAY : '';
-        console.log(_this);
         _this.buildRoutes();
         return _this;
     }
@@ -79015,8 +79109,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var base_router_1 = __webpack_require__(/*! ../base.router */ "./src/server/routes/base.router.ts");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var server_1 = __webpack_require__(/*! react-dom/server */ "./node_modules/react-dom/server.js");
-var App_1 = __webpack_require__(/*! ../../../client/App */ "./src/client/App.tsx");
-var html_1 = __webpack_require__(/*! ../../../client/html */ "./src/client/html.ts");
+var HomePage_1 = __webpack_require__(/*! ../../../client/HomePage */ "./src/client/HomePage.tsx");
 /**
  * Returns the HTML string to render on the client side for the main root view.
  */
@@ -79038,15 +79131,17 @@ var RootViewRouter = /** @class */ (function (_super) {
      */
     RootViewRouter.prototype.getRootView = function (req, res, next) {
         return __awaiter(this, void 0, void 0, function () {
-            var body, title;
             return __generator(this, function (_a) {
                 try {
-                    body = server_1.renderToString(React.createElement(App_1.default));
-                    title = 'DrystoneWeatherDemo';
-                    res.send(html_1.default({
-                        body: body,
-                        title: title
-                    }));
+                    server_1.renderToNodeStream(React.createElement(HomePage_1.default)).pipe(res);
+                    //const body = renderToString(React.createElement(HomePage));
+                    //const title = 'DrystoneWeatherDemo - Home';
+                    // res.send(
+                    //   html({
+                    //     body,
+                    //     title
+                    //   })
+                    // );
                 }
                 catch (error) {
                     next(error);
@@ -79075,8 +79170,8 @@ exports.RootViewRouter = RootViewRouter;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! X:\local-dev\drystone-weather-demo\src\app.ts */"./src/app.ts");
-module.exports = __webpack_require__(/*! X:\local-dev\drystone-weather-demo\src\client\styles.scss */"./src/client/styles.scss");
+__webpack_require__(/*! /Users/dylanlegendre/local-dev/drystone-weather-demo/src/app.ts */"./src/app.ts");
+module.exports = __webpack_require__(/*! /Users/dylanlegendre/local-dev/drystone-weather-demo/src/client/styles.scss */"./src/client/styles.scss");
 
 
 /***/ }),
