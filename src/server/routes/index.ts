@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { WeatherRouter } from './api/weather.router';
 import { CountryRouter } from './api/country.router';
-import { RootViewRouter } from './views/root-view.router';
 
 /**
  * Contains all logic necessary to define the routes that the server 
@@ -17,7 +16,6 @@ export class Router {
      */
     public static initializeRoutes(app: express.Express): void {
         Router.initAPIRoutes(app);
-        Router.initViewRoutes(app);
     }
 
     /**
@@ -27,13 +25,5 @@ export class Router {
     private static initAPIRoutes(app: express.Express): void {
         app.use('/weather', new WeatherRouter().router);
         app.use('/countries', new CountryRouter().router);
-    }
-
-    /**
-     * The View routes define routes that we can call to render HTML from server to client.
-     * @param {express.Express} app Instance of the running application.
-     */
-    private static initViewRoutes(app: express.Express): void {
-        app.use('/', new RootViewRouter().router);
     }
 }

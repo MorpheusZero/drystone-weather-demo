@@ -45,7 +45,6 @@ export class WeatherRouter extends BaseRouter {
      */
     public async getCurrentWeather(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
-            console.log(req.query);
             if(this.isRequestValid(req.query)) {
                 // todo: params
                 const params = ``;
