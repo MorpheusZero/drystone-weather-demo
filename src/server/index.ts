@@ -15,7 +15,7 @@ export class AppServer {
             AppServer.app = express();
 
             // Use Static Files
-            AppServer.app.use(express.static('dist'));
+            AppServer.app.use(express.static('dist/static'));
 
             // If our deployment has set a port--use that--otherwise, default to the .env port for local.
             AppServer.app.set('port', process.env.PORT || process.env.APP_PORT);

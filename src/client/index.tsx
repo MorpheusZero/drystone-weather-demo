@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import HomePage from './HomePage';
 
 /**
@@ -10,4 +10,4 @@ require('bootstrap');
 /**
  * Bootstrap the application
  */
-//hydrate(React.createElement(HomePage), document.getElementById('app'));
+render(React.createElement(HomePage), document.getElementById('app'));

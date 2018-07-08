@@ -46,9 +46,7 @@ export class WeatherRouter extends BaseRouter {
     public async getCurrentWeather(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             if(this.isRequestValid(req.query)) {
-                // todo: params
-                const params = ``;
-                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}?zip=${req.query.zip},us&APPID=${this.apiKey}`;
+                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}`;
                 const response: any = await request.get(url);
                 const resData: any = await (new Promise((resolve, reject) => {
                     request(url, (error, res, body) => {
@@ -65,7 +63,7 @@ export class WeatherRouter extends BaseRouter {
             } else {
                 res.status(400);
                 res.json(Object.freeze({
-                    error: '?zip=xxxxx is a required query param!'
+                    error: 'You must provide the necessary query params! {zip, countryCode, cityName}'
                 }));
                 res.end();
             }
@@ -84,7 +82,7 @@ export class WeatherRouter extends BaseRouter {
     public async getFiveDayForecast(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             if(this.isRequestValid(req.query)) {
-                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}?zip=${req.query.zip},us&APPID=${this.apiKey}`;
+                const url: string = `${this.gatewayUrl}${this.routeMapping.FIVE_DAY_FORECAST}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}`;
                 const response: any = await request.get(url);
                 const resData: any = await (new Promise((resolve, reject) => {
                     request(url, (error, res, body) => {
@@ -101,7 +99,7 @@ export class WeatherRouter extends BaseRouter {
             } else {
                 res.status(400);
                 res.json(Object.freeze({
-                    error: '?zip=xxxxx is a required query param!'
+                    error: 'You must provide the necessary query params! {zip, countryCode, cityName}'
                 }));
                 res.end();
             }
@@ -117,13 +115,22 @@ export class WeatherRouter extends BaseRouter {
      */
     private isRequestValid(query: WeatherRequestModel): boolean {
         // We require at least ONE--zip or city name.
-        if (query.zip) {
-            return true;
-        } else if (query.cityName) {
+        console.log(query);
+        if ((query.zip || query.cityName) && query.countryCode) {
             return true;
         } else {
             return false;
         }
+    }
+
+    /**
+     * Based on which query params are passed in, builds the string we need.
+     * @param {WeatherRequestModel} query The request query parameters.
+     */
+    private buildQueryParams(query: WeatherRequestModel): string {
+        const urlFragment: string = '?' + (query.zip ? 'zip=' + query.zip + ',' + query.countryCode : '') + (query.cityName ? 'q=' + query.cityName + ',' + query.countryCode : '');
+        console.log(urlFragment);
+        return urlFragment;
     }
 
     /**

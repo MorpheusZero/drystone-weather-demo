@@ -2,16 +2,14 @@
 
 const paths = require('./paths');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const platform = process.env.platform;
 
 module.exports = {
-  entry: [
-    paths.appServerTs,
-    paths.appStyles
-  ],
+  entry: paths.getAppEntryFiles(platform),
   mode: "development",
   output: {
-    filename: "app.server.js",
-    path: paths.appDist,
+    filename: platform === "server" ? "app.server.js" : "app.client.js",
+    path: platform === "server" ? paths.appDist : paths.appDistStatic,
     publicPath: '/',
   },
 
