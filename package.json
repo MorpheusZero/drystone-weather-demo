@@ -2,16 +2,23 @@
   "name": "drystone-weather-demo",
   "version": "1.1.0",
   "description": "An OpenWeatherMap API Implementation Demo Test",
-  "main": "dist/index.js",
+  "main": "dist/app.server.js",
   "scripts": {
+    "comments:win": "echo WINDOWS SPECIFIC RUN SCRIPTS",
+    "start:win": "npm run build:win && npm run serve:win",
+    "build:win": "npm run build:server:win && npm run build:client:win",
+    "build:client:win": "SET platform=client&&webpack",
+    "build:server:win": "SET platform=server&&webpack",
+    "postbuild:win": "sh ./buildScript.sh",
+    "serve:win": "SET APP_PORT=9000&& SET OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/&& SET OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0&& node ./dist/app.server.js",
+
+    "comments": "echo LINUX/MAC SPECIFIC RUN SCRIPTS",
     "start": "npm run build && npm run serve",
-    "start:mac": "npm run build && npm run serve:mac",
     "build": "npm run build:server && npm run build:client",
-    "build:client": "SET platform=client&&webpack",
-    "build:server": "SET platform=server&&webpack",
+    "build:client": "platform=client && webpack",
+    "build:server": "platform=server && webpack",
     "postbuild": "sh ./buildScript.sh",
-    "serve": "SET APP_PORT=9000&& SET OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/&& SET OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0&& node ./dist/app.server.js",
-    "serve:mac": "APP_PORT=9000 OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/ OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0 node ./dist/app.server.js"
+    "serve": "APP_PORT=9000 OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/ OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0 node ./dist/app.server.js"
   },
   "repository": {
     "type": "git",
