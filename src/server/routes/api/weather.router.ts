@@ -56,7 +56,7 @@ export class WeatherRouter extends BaseRouter {
                         reject(error);
                       }
                     });
-                  }));
+                }));
                 res.json(Object.freeze({
                     data: JSON.parse(resData)
                 }));
@@ -115,7 +115,6 @@ export class WeatherRouter extends BaseRouter {
      */
     private isRequestValid(query: WeatherRequestModel): boolean {
         // We require at least ONE--zip or city name.
-        console.log(query);
         if ((query.zip || query.cityName) && query.countryCode) {
             return true;
         } else {
@@ -129,7 +128,6 @@ export class WeatherRouter extends BaseRouter {
      */
     private buildQueryParams(query: WeatherRequestModel): string {
         const urlFragment: string = '?' + (query.zip ? 'zip=' + query.zip + ',' + query.countryCode : '') + (query.cityName ? 'q=' + query.cityName + ',' + query.countryCode : '');
-        console.log(urlFragment);
         return urlFragment;
     }
 

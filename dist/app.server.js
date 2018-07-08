@@ -73663,7 +73663,6 @@ var WeatherRouter = /** @class */ (function (_super) {
                         _a.trys.push([0, 5, , 6]);
                         if (!this.isRequestValid(req.query)) return [3 /*break*/, 3];
                         url_1 = "" + this.gatewayUrl + this.routeMapping.CURRENT_WEATHER + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey;
-                        console.log(url_1);
                         return [4 /*yield*/, request.get(url_1)];
                     case 1:
                         response = _a.sent();
@@ -73716,7 +73715,7 @@ var WeatherRouter = /** @class */ (function (_super) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
                         if (!this.isRequestValid(req.query)) return [3 /*break*/, 3];
-                        url_2 = "" + this.gatewayUrl + this.routeMapping.FIVE_DAY_FORECAST + this.buildQueryParams + "&APPID=" + this.apiKey;
+                        url_2 = "" + this.gatewayUrl + this.routeMapping.FIVE_DAY_FORECAST + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey;
                         return [4 /*yield*/, request.get(url_2)];
                     case 1:
                         response = _a.sent();
@@ -73761,7 +73760,6 @@ var WeatherRouter = /** @class */ (function (_super) {
      */
     WeatherRouter.prototype.isRequestValid = function (query) {
         // We require at least ONE--zip or city name.
-        console.log(query);
         if ((query.zip || query.cityName) && query.countryCode) {
             return true;
         }
@@ -73775,7 +73773,6 @@ var WeatherRouter = /** @class */ (function (_super) {
      */
     WeatherRouter.prototype.buildQueryParams = function (query) {
         var urlFragment = '?' + (query.zip ? 'zip=' + query.zip + ',' + query.countryCode : '') + (query.cityName ? 'q=' + query.cityName + ',' + query.countryCode : '');
-        console.log(urlFragment);
         return urlFragment;
     };
     /**

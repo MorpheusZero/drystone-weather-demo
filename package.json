@@ -11,7 +11,6 @@
     "build:server:win": "SET platform=server&&webpack",
     "postbuild:win": "sh ./buildScript.sh",
     "serve:win": "SET APP_PORT=9000&& SET OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/&& SET OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0&& node ./dist/app.server.js",
-
     "comments": "echo LINUX/MAC SPECIFIC RUN SCRIPTS",
     "start": "npm run build && npm run serve",
     "build": "npm run build:server && npm run build:client",
@@ -56,6 +55,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
     "express": "^4.16.3",
@@ -65,6 +65,7 @@
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "underscore": "^1.9.1"
   }
 }
