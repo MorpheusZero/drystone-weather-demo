@@ -57656,6 +57656,53 @@ exports.Clouds = function () {
 
 /***/ }),
 
+/***/ "./src/client/components/UserInput/WeatherCard/index.tsx":
+/*!***************************************************************!*\
+  !*** ./src/client/components/UserInput/WeatherCard/index.tsx ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/**
+ * Handles the main view and user input for the weather card details.
+ */
+var WeatherCard = /** @class */ (function (_super) {
+    __extends(WeatherCard, _super);
+    /**
+     * Default Constructor
+     * @param props
+     */
+    function WeatherCard(props) {
+        var _this = _super.call(this, props) || this;
+        console.log('PROPS', props);
+        console.log('THIS', _this.props);
+        _this.state = {};
+        return _this;
+    }
+    WeatherCard.prototype.render = function () {
+        return (React.createElement("div", null, "TEST"));
+    };
+    return WeatherCard;
+}(React.Component));
+exports.WeatherCard = WeatherCard;
+
+
+/***/ }),
+
 /***/ "./src/client/components/UserInput/index.tsx":
 /*!***************************************************!*\
   !*** ./src/client/components/UserInput/index.tsx ***!
@@ -57716,6 +57763,7 @@ var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var lodash_1 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 var _ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
 var weather_service_1 = __webpack_require__(/*! ./weather.service */ "./src/client/components/UserInput/weather.service.ts");
+var WeatherCard_1 = __webpack_require__(/*! ./WeatherCard */ "./src/client/components/UserInput/WeatherCard/index.tsx");
 /**
  * The action types we support for the button click handler.
  */
@@ -57747,7 +57795,6 @@ var UserInput = /** @class */ (function (_super) {
          */
         _this.handleClick = function ($event, action) {
             if ($event && action) {
-                console.log(_this.state);
                 switch (action) {
                     case ACTION_TYPES.TEXT_CHANGE:
                         if ($event.target.value) {
@@ -57814,7 +57861,7 @@ var UserInput = /** @class */ (function (_super) {
             getFiveDay: true,
             countries: [],
             inputListenerAttached: false,
-            hasErrors: false
+            weatherDetails: null
         };
         return _this;
     }
@@ -57888,13 +57935,22 @@ var UserInput = /** @class */ (function (_super) {
                                 React.createElement("input", { type: "text", className: "form-control", id: "areaInput", placeholder: "Zipcode or City Name" })),
                             React.createElement("div", { className: "form-group" },
                                 React.createElement("div", { className: "form-check form-check-inline" },
-                                    React.createElement("input", { onClick: function (e) { _this.handleClick(e, ACTION_TYPES.DEFAULT_COUNTRY); }, className: "form-check-input", type: "radio", name: "countryDefault", id: "chkDefaultCountry", value: "defaultCountry" }),
+                                    React.createElement("input", { onClick: function (e) { _this.handleClick(e, ACTION_TYPES.CHECK_CURRENT); }, type: "checkbox", className: "form-check-input", id: "chkCurrent", defaultChecked: true }),
+                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkCurrent" }, "Current")),
+                                React.createElement("div", { className: "form-check form-check-inline" },
+                                    React.createElement("input", { onClick: function (e) { _this.handleClick(e, ACTION_TYPES.CHECK_FIVE_DAY); }, type: "checkbox", className: "form-check-input", id: "chkFiveDay", defaultChecked: true }),
+                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkFiveDay" }, "Five Days"))),
+                            React.createElement("div", { className: "form-group" },
+                                React.createElement("div", { className: "form-check form-check-inline" },
+                                    React.createElement("input", { onClick: function (e) { _this.handleClick(e, ACTION_TYPES.DEFAULT_COUNTRY); }, className: "form-check-input", type: "radio", name: "countryDefault", id: "chkDefaultCountry", value: "defaultCountry", defaultChecked: true }),
                                     React.createElement("label", { className: "form-check-label", htmlFor: "chkDefaultCountry" }, "United States")),
                                 React.createElement("div", { className: "form-check form-check-inline" },
                                     React.createElement("input", { onClick: function (e) { _this.handleClick(e, ACTION_TYPES.OTHER_COUNTRY); }, className: "form-check-input", type: "radio", name: "countryDefault", id: "chkOtherCountry", value: "otherCountry" }),
-                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkOtherCountry" }, "Other")),
-                                React.createElement("div", { className: "form-group", dangerouslySetInnerHTML: { __html: (this.state ? (this.state.countryType.valueOf() === ACTION_TYPES.OTHER_COUNTRY.valueOf() ? this.buildCountrySelectBox() : '') : '') } })),
-                            React.createElement("button", { type: "submit", className: "btn btn-primary" }, "Submit")))))));
+                                    React.createElement("label", { className: "form-check-label", htmlFor: "chkOtherCountry" }, "Other"))),
+                            React.createElement("div", { className: "form-group", dangerouslySetInnerHTML: { __html: (this.state ? (this.state.countryType.valueOf() === ACTION_TYPES.OTHER_COUNTRY.valueOf() ? this.buildCountrySelectBox() : '') : '') } }),
+                            React.createElement("button", { type: "submit", className: "btn btn-primary btn-block" }, "Submit")))),
+                React.createElement("div", { className: "row" },
+                    React.createElement("div", { className: "col-sm-12" }, this.state.weatherDetails ? React.createElement(WeatherCard_1.WeatherCard, { weatherDetails: this.state.weatherDetails }) : '')))));
     };
     ;
     /**
@@ -57912,7 +57968,9 @@ var UserInput = /** @class */ (function (_super) {
                         weatherDetails = _a.sent();
                         // If its null--it means the server encountered an error--otherwise we should have a good object here.
                         if (weatherDetails) {
-                            console.log(weatherDetails);
+                            this.setState({
+                                weatherDetails: weatherDetails
+                            });
                         }
                         return [2 /*return*/];
                 }

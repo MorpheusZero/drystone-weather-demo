@@ -4,6 +4,7 @@ import { forEach } from 'lodash';
 import * as _ from 'underscore';
 import { CountryCodeModel } from '../../../models/country-code.model';
 import { WeatherService } from './weather.service';
+import { WeatherCard } from './WeatherCard';
 
 /**
  * The action types we support for the button click handler.
@@ -30,7 +31,7 @@ interface initialState {
     getFiveDay: boolean;
     countries: Array<CountryCodeModel>;
     inputListenerAttached: boolean;
-    hasErrors: boolean;
+    weatherDetails: any;
 }
 
 /**
@@ -53,7 +54,7 @@ export class UserInput extends React.Component<{}, initialState> {
             getFiveDay: true,
             countries: [],
             inputListenerAttached: false,
-            hasErrors: false
+            weatherDetails: null
         };
     }
 
@@ -101,7 +102,6 @@ export class UserInput extends React.Component<{}, initialState> {
      */
     handleClick = ($event: any, action: string): void => {
         if ($event && action) {
-            console.log(this.state);
             switch (action) {
                 case ACTION_TYPES.TEXT_CHANGE:
                     if ($event.target.value) {
@@ -186,27 +186,42 @@ export class UserInput extends React.Component<{}, initialState> {
                     <h3>Drystone Weather</h3>
                     <form onSubmit={(e) => { this.handleClick(e, ACTION_TYPES.SUBMIT) }}>
                         <div className="form-group">
-                        <label htmlFor="areaInput">Where are you?</label>
-                        <input type="text" className="form-control" id="areaInput" placeholder="Zipcode or City Name" />
+                            <label htmlFor="areaInput">Where are you?</label>
+                            <input type="text" className="form-control" id="areaInput" placeholder="Zipcode or City Name" />
                         </div>
                         <div className="form-group">
-                        <div className="form-check form-check-inline">
-                            <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.DEFAULT_COUNTRY) }} className="form-check-input" type="radio" name="countryDefault" id="chkDefaultCountry" value="defaultCountry" />
-                            <label className="form-check-label" htmlFor="chkDefaultCountry">
-                            United States
-                            </label>
+                            <div className="form-check form-check-inline">
+                                <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.CHECK_CURRENT) }} type="checkbox" className="form-check-input" id="chkCurrent" defaultChecked />
+                                <label className="form-check-label" htmlFor="chkCurrent">Current</label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.CHECK_FIVE_DAY) }} type="checkbox" className="form-check-input" id="chkFiveDay" defaultChecked />
+                                <label className="form-check-label" htmlFor="chkFiveDay">Five Days</label>
+                            </div>
                         </div>
-                        <div className="form-check form-check-inline">
-                            <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.OTHER_COUNTRY) }} className="form-check-input" type="radio" name="countryDefault" id="chkOtherCountry" value="otherCountry" />
-                            <label className="form-check-label" htmlFor="chkOtherCountry">
-                            Other
-                            </label>
+                        <div className="form-group">
+                            <div className="form-check form-check-inline">
+                                <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.DEFAULT_COUNTRY) }} className="form-check-input" type="radio" name="countryDefault" id="chkDefaultCountry" value="defaultCountry" defaultChecked />
+                                <label className="form-check-label" htmlFor="chkDefaultCountry">
+                                United States
+                                </label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input onClick={(e) => { this.handleClick(e, ACTION_TYPES.OTHER_COUNTRY) }} className="form-check-input" type="radio" name="countryDefault" id="chkOtherCountry" value="otherCountry" />
+                                <label className="form-check-label" htmlFor="chkOtherCountry">
+                                Other
+                                </label>
+                            </div>
                         </div>
                         <div className="form-group" dangerouslySetInnerHTML={{__html: (this.state ? (this.state.countryType.valueOf() === ACTION_TYPES.OTHER_COUNTRY.valueOf() ? this.buildCountrySelectBox() : '') : '')}}>
                         </div>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary btn-block">Submit</button>
                     </form>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12">
+                        {this.state.weatherDetails ? <WeatherCard weatherDetails={this.state.weatherDetails} /> : ''}
                     </div>
                 </div>
             </div>
@@ -222,7 +237,9 @@ export class UserInput extends React.Component<{}, initialState> {
 
         // If its null--it means the server encountered an error--otherwise we should have a good object here.
         if (weatherDetails) {
-            console.log(weatherDetails);
+            this.setState({
+                weatherDetails: weatherDetails
+            });
         }
     }
 };
