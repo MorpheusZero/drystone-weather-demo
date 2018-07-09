@@ -37,12 +37,12 @@ workflows:
               only:
                 - staging
                 - master
-   build-deploy:
+  build-deploy:
     jobs:
       - build
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: master
+        filters:
+          branches:
+            only: master
