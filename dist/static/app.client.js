@@ -57677,6 +57677,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var config_1 = __webpack_require__(/*! ../../../../config/config */ "./src/config/config.ts");
 /**
  * Handles the main view and user input for the weather card details.
  */
@@ -57687,14 +57688,14 @@ var WeatherCard = /** @class */ (function (_super) {
      * @param props
      */
     function WeatherCard(props) {
-        var _this = _super.call(this, props) || this;
-        console.log('PROPS', props);
-        console.log('THIS', _this.props);
-        _this.state = {};
-        return _this;
+        return _super.call(this, props) || this;
     }
+    WeatherCard.prototype.buildConditionsCard = function (name, main, wind, weather) {
+        var iconPath = config_1.default.iconBaseUrl.replace('{ICON}', weather[0].icon);
+        return "\n        <div class=\"\">\n            <p>" + name + "</p>\n            <img src=\"" + iconPath + "\"></img>\n            <p>Wind: " + wind.speed + "</p>\n            <p>Humidity: " + main.humidity + "</p>\n            <p>Current Temp: " + main.temp + "</p>\n            <p>High: " + main.temp_max + "</p>\n            <p>Low: " + main.temp_min + "</p>\n        </div>\n        ";
+    };
     WeatherCard.prototype.render = function () {
-        return (React.createElement("div", null, "TEST"));
+        return (React.createElement("div", { className: "form-group", dangerouslySetInnerHTML: { __html: (this.props.weatherDetails && this.props.weatherDetails.current) ? this.buildConditionsCard(this.props.weatherDetails.current.name, this.props.weatherDetails.current.main, this.props.weatherDetails.current.wind, this.props.weatherDetails.current.weather) : '' } }));
     };
     return WeatherCard;
 }(React.Component));
@@ -57764,6 +57765,7 @@ var lodash_1 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
 var _ = __webpack_require__(/*! underscore */ "./node_modules/underscore/underscore.js");
 var weather_service_1 = __webpack_require__(/*! ./weather.service */ "./src/client/components/UserInput/weather.service.ts");
 var WeatherCard_1 = __webpack_require__(/*! ./WeatherCard */ "./src/client/components/UserInput/WeatherCard/index.tsx");
+var config_1 = __webpack_require__(/*! ../../../config/config */ "./src/config/config.ts");
 /**
  * The action types we support for the button click handler.
  */
@@ -57873,7 +57875,7 @@ var UserInput = /** @class */ (function (_super) {
             var res, countries;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, axios_1.default.get("http://localhost:9000/countries")];
+                    case 0: return [4 /*yield*/, axios_1.default.get(config_1.default.apiGatewayUrl + "countries")];
                     case 1:
                         res = _a.sent();
                         if (res && res.data) {
@@ -58031,6 +58033,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+var config_1 = __webpack_require__(/*! ../../../config/config */ "./src/config/config.ts");
 var WeatherService = /** @class */ (function () {
     /**
      * Default Constructor
@@ -58038,8 +58041,8 @@ var WeatherService = /** @class */ (function () {
      */
     function WeatherService(stateOpts) {
         this.state = stateOpts;
-        this.currentWeatherGatewayUrl = 'http://localhost:9000/weather/current';
-        this.fiveDayWeatherGatewayUrl = 'http://localhost:9000/weather/fiveday';
+        this.currentWeatherGatewayUrl = config_1.default.apiGatewayUrl + "weather/current";
+        this.fiveDayWeatherGatewayUrl = config_1.default.apiGatewayUrl + "weather/fiveday";
     }
     /**
      * Calling this method will make all the determinations based on the state for what needs to get called and with what parameters.
@@ -58146,6 +58149,37 @@ react_dom_1.render(React.createElement(HomePage_1.default), document.getElementB
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/config/config.ts":
+/*!******************************!*\
+  !*** ./src/config/config.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Config is modified during the build process to pull in the correct environment config.
+ */
+var json = __webpack_require__(/*! ./env.json */ "./src/config/env.json");
+// This is for local testing only--when ran with --prod flag--the buildScript will .replace('json.local', 'json.prod');
+exports.default = json.local;
+
+
+/***/ }),
+
+/***/ "./src/config/env.json":
+/*!*****************************!*\
+  !*** ./src/config/env.json ***!
+  \*****************************/
+/*! exports provided: local, prod, default */
+/***/ (function(module) {
+
+module.exports = {"local":{"apiGatewayUrl":"http://localhost:9000/","iconBaseUrl":"http://openweathermap.org/img/w/{ICON}.png"},"prod":{"apiGatewayUrl":"https://drystone-weather-demo.herokuapp.com/","iconBaseUrl":"http://openweathermap.org/img/w/{ICON}.png"}};
 
 /***/ }),
 

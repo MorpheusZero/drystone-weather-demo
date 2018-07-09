@@ -73662,7 +73662,7 @@ var WeatherRouter = /** @class */ (function (_super) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
                         if (!this.isRequestValid(req.query)) return [3 /*break*/, 3];
-                        url_1 = "" + this.gatewayUrl + this.routeMapping.CURRENT_WEATHER + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey;
+                        url_1 = "" + this.gatewayUrl + this.routeMapping.CURRENT_WEATHER + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey + "&units=imperial";
                         return [4 /*yield*/, request.get(url_1)];
                     case 1:
                         response = _a.sent();
@@ -73715,7 +73715,7 @@ var WeatherRouter = /** @class */ (function (_super) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
                         if (!this.isRequestValid(req.query)) return [3 /*break*/, 3];
-                        url_2 = "" + this.gatewayUrl + this.routeMapping.FIVE_DAY_FORECAST + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey;
+                        url_2 = "" + this.gatewayUrl + this.routeMapping.FIVE_DAY_FORECAST + this.buildQueryParams(req.query) + "&APPID=" + this.apiKey + "&units=imperial";
                         return [4 /*yield*/, request.get(url_2)];
                     case 1:
                         response = _a.sent();

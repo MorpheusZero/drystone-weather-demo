@@ -5,6 +5,7 @@ import * as _ from 'underscore';
 import { CountryCodeModel } from '../../../models/country-code.model';
 import { WeatherService } from './weather.service';
 import { WeatherCard } from './WeatherCard';
+import config from '../../../config/config';
 
 /**
  * The action types we support for the button click handler.
@@ -62,7 +63,7 @@ export class UserInput extends React.Component<{}, initialState> {
      * After the component has loaded--loadsup the countries.
      */
     public async componentDidMount(): Promise<void> {
-        const res: any = await axios.get(`http://localhost:9000/countries`);
+        const res: any = await axios.get(`${config.apiGatewayUrl}countries`);
         if (res && res.data) {
             const countries = res.data.data;
             this.setState({ countries });

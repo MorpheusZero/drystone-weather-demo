@@ -46,7 +46,7 @@ export class WeatherRouter extends BaseRouter {
     public async getCurrentWeather(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             if(this.isRequestValid(req.query)) {
-                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}`;
+                const url: string = `${this.gatewayUrl}${this.routeMapping.CURRENT_WEATHER}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}&units=imperial`;
                 const response: any = await request.get(url);
                 const resData: any = await (new Promise((resolve, reject) => {
                     request(url, (error, res, body) => {
@@ -82,7 +82,7 @@ export class WeatherRouter extends BaseRouter {
     public async getFiveDayForecast(req: express.Request, res: express.Response, next: express.NextFunction) {
         try {
             if(this.isRequestValid(req.query)) {
-                const url: string = `${this.gatewayUrl}${this.routeMapping.FIVE_DAY_FORECAST}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}`;
+                const url: string = `${this.gatewayUrl}${this.routeMapping.FIVE_DAY_FORECAST}${this.buildQueryParams(req.query)}&APPID=${this.apiKey}&units=imperial`;
                 const response: any = await request.get(url);
                 const resData: any = await (new Promise((resolve, reject) => {
                     request(url, (error, res, body) => {

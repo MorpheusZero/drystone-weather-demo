@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../../../config/config';
 
 export class WeatherService {
 
@@ -23,8 +24,8 @@ export class WeatherService {
      */
     constructor(stateOpts: any) {
         this.state = stateOpts;
-        this.currentWeatherGatewayUrl = 'http://localhost:9000/weather/current';
-        this.fiveDayWeatherGatewayUrl = 'http://localhost:9000/weather/fiveday';
+        this.currentWeatherGatewayUrl = `${config.apiGatewayUrl}weather/current`;
+        this.fiveDayWeatherGatewayUrl = `${config.apiGatewayUrl}weather/fiveday`;
     }
 
     /**
