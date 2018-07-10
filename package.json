@@ -16,7 +16,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:client": "platform=client webpack",
     "build:server": "platform=server webpack",
-    "prebuild": "./buildScript.sh prod",
+    "prebuild": "sh /buildScript.sh prod",
     "serve": "APP_PORT=9000 OPEN_WEATHER_MAP_GATEWAY=http://api.openweathermap.org/data/2.5/ OPEN_WEATHER_MAP_API_KEY=3202bed939bd3cfc1a249ab5587566a0 node ./dist/app.server.js"
   },
   "repository": {
