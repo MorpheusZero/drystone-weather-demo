@@ -1,5 +1,4 @@
-# Do not check in the .env file
-.env
+dist
 
 # Logs
 logs
