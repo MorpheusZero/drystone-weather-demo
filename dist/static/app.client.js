@@ -58166,8 +58166,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Config is modified during the build process to pull in the correct environment config.
  */
 var json = __webpack_require__(/*! ./env.json */ "./src/config/env.json");
-// This is for local testing only--when ran with --prod flag--the buildScript will .replace('json.local', 'json.prod');
-exports.default = json.local;
+// This is for local testing only--when ran with --prod flag--the buildScript will .replace
+exports.default = json.prod;
 
 
 /***/ }),

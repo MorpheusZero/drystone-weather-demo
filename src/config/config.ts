@@ -3,5 +3,5 @@
  */
 const json = require('./env.json');
 
-// This is for local testing only--when ran with --prod flag--the buildScript will .replace('json.local', 'json.prod');
+// This is for local testing only--when ran with --prod flag--the buildScript will .replace
 export default json.local;
