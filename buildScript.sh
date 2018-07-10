@@ -14,6 +14,5 @@ cp ./src/client/favicon.ico ./dist/static/favicon.ico
 if [ "$1" = "prod" ]
 then
 echo "PROD ENVIRONMENT DETECTED! - Swapping Environment Variables for Build"
-file=./src/client/config/config.ts
-sed -i 's/json.local/json.prod/g' "$file"
+node ./src/scripts/write-config.js
 fi
