@@ -7,3 +7,13 @@
 cp ./src/client/index.html ./dist/static/index.html
 # Copy the favicon to the dist/static directory
 cp ./src/client/favicon.ico ./dist/static/favicon.ico
+
+#####
+# Set the config environment--Only if "prod" is passed in.
+#####
+if [ "$1" = "prod" ]
+then
+echo "PROD ENVIRONMENT DETECTED! - Swapping Environment Variables for Build"
+file=./src/client/config/config.ts
+sed -i 's/json.local/json.prod/g' "$file"
+fi
