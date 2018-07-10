@@ -15,6 +15,10 @@
 	height: 100vh;
 	overflow-x: hidden;
 }
+
+.center {
+    text-align: center;
+}
   
 .container {
     position: absolute;
@@ -37,4 +41,18 @@
 /* ## OVERRIDES ## */
 .country-select {
     width: 100%;
+}
+
+.block-margin--right {
+    display: inline;
+    margin-right: 1rem;
+}
+
+.condition-card {
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px grey;
+    background-color: rgba(245, 245, 245, 0.8);
+    padding: 8px;
+    margin-top: 8px;
 }
