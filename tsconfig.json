@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es2015", "dom", "scripthost"],
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "strict": true,
+    "target": "es5",
+    "jsx": "react"
+  },
+  "include": [
+        "./src/**/*"
+    ]
+}

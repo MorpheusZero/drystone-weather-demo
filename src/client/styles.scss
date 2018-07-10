@@ -1,0 +1,40 @@
+/**
+ * Import All CSS here
+ * Webpack will pick up this file and all its imports.
+ */
+
+@import '~normalize.css';
+@import '~bootstrap/scss/bootstrap';
+@import './theme/variables';
+@import './theme/clouds';
+
+.html, body {
+	background: $background-color;
+	color: $default-font-color;
+	font: 100% Arial, Sans Serif;
+	height: 100vh;
+	overflow-x: hidden;
+}
+  
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 50%;
+    .input-wrapper {
+        margin: 0 auto;
+        text-align: center;
+        border: 1px solid gray;
+        border-radius: 10px;
+        box-shadow: 2px 2px 3px gray;
+        background-color: rgba(245, 245, 245, 0.7);
+        padding: 8px;
+    }
+}
+
+/* ## OVERRIDES ## */
+.country-select {
+    width: 100%;
+}
