@@ -45,7 +45,7 @@ export class WeatherCard extends React.Component<{ weatherDetails: any}, any> {
             <p>
             ${moment(list[i].dt_txt).format("MMM Do YY")}
             <br />
-            <img src="${iconPath}"></img> H:${list[i].main.temp_max} L:${list[i].main.temp_min}
+            <img class="icon" src="${iconPath}"></img> H:${list[i].main.temp_max} L:${list[i].main.temp_min}
             </p>
             `;
         }
@@ -59,10 +59,10 @@ export class WeatherCard extends React.Component<{ weatherDetails: any}, any> {
 
     public render(): any {
         return (
-        <span>
+        <div>
             <div className="form-group block-margin--right" dangerouslySetInnerHTML={{__html: (this.props.weatherDetails && this.props.weatherDetails.current) ? this.buildCurrentConditionsCard(this.props.weatherDetails.current.name, this.props.weatherDetails.current.main, this.props.weatherDetails.current.wind, this.props.weatherDetails.current.weather) : ''}}></div>
             <div className="form-group block-margin--right" dangerouslySetInnerHTML={{__html: (this.props.weatherDetails && this.props.weatherDetails.fiveDay) ? this.buildForecastCard(this.props.weatherDetails.fiveDay.city.name, this.props.weatherDetails.fiveDay.list) : ''}}></div>
-        </span>
+        </div>
     )
     }
 
