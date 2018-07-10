@@ -218,7 +218,7 @@ export class UserInput extends React.Component<{}, initialState> {
                         </div>
                         <button type="submit" className="btn btn-primary btn-block">Submit</button>
                     </form>
-                    </div>
+                </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">

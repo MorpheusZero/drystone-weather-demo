@@ -12,7 +12,8 @@
 	background: $background-color;
 	color: $default-font-color;
 	font: 100% Arial, Sans Serif;
-	height: 100vh;
+    height: 100vh;
+    width: 100%;
 	overflow-x: hidden;
 }
 
@@ -38,6 +39,29 @@
     }
 }
 
+@media only screen and (max-width: 900px) {
+    html, body {
+        font: 80% Arial, Sans Serif;
+    }
+
+    .container {
+        width: 90%;
+        height: 100%;
+        position: static;
+        top: unset;
+        left: unset;
+        transform: none;
+    }
+
+    .condition-card {
+        width: 90%;
+    }
+
+    .icon {
+        width: 30%;
+    }
+}
+
 /* ## OVERRIDES ## */
 .country-select {
     width: 100%;
@@ -55,4 +79,5 @@
     background-color: rgba(245, 245, 245, 0.8);
     padding: 8px;
     margin-top: 8px;
+    width: 100%;
 }
