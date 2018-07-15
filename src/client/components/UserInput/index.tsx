@@ -188,7 +188,7 @@ export class UserInput extends React.Component<{}, initialState> {
                     <form onSubmit={(e) => { this.handleClick(e, ACTION_TYPES.SUBMIT) }}>
                         <div className="form-group">
                             <label htmlFor="areaInput">Where are you?</label>
-                            <input type="text" className="form-control" id="areaInput" placeholder="Zipcode or City Name" />
+                            <input onKeyUp={(e) => { if (e.keyCode === 13) this.handleClick(e, ACTION_TYPES.SUBMIT) }} type="text" className="form-control" id="areaInput" placeholder="Zipcode or City Name" />
                         </div>
                         <div className="form-group">
                             <div className="form-check form-check-inline">
@@ -220,10 +220,16 @@ export class UserInput extends React.Component<{}, initialState> {
                     </form>
                 </div>
                 </div>
-                <div className="row">
+            </div>
+            <div className="row">
                     <div className="col-sm-12">
                         {this.state.weatherDetails ? <WeatherCard weatherDetails={this.state.weatherDetails} /> : ''}
                     </div>
+            </div>
+            <div className="row">
+                <div className="col-sm-12 center">
+                    <p><b>A Learning Demo by <em>Dylan Legendre</em></b></p>
+                    <a href="https://github.com/MorpheusZero/drystone-weather-demo" target="_blank" className="btn btn-sm btn-secondary">View on Github</a>
                 </div>
             </div>
         </div>)
