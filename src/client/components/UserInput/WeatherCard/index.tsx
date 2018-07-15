@@ -22,17 +22,17 @@ export class WeatherCard extends React.Component<{ weatherDetails: any}, any> {
      * @param wind 
      * @param weather 
      */
-    private buildCurrentConditionsCard(name: string, main: any, wind: any, weather: any): string {
+    private buildCurrentConditionsCard(name: string, main: any, wind: any, weather: any, sys: any): string {
         const iconPath: string = config.iconBaseUrl.replace('{ICON}', weather[0].icon);
         return `
         <div class="condition-card">
-            <h4 class="center">${name}</h4>
-            <p class="center"><img src="${iconPath}"></img></p>
-            <p>Wind: ${wind.speed}</p>
-            <p>Humidity: ${main.humidity}</p>
-            <p>Current Temp: ${main.temp}</p>
-            <p>High: ${main.temp_max}</p>
-            <p>Low: ${main.temp_min}</p>
+            <h4 class="center weight--bold">${name}</h4>
+    <p class="center"><img src="${iconPath}"></img></p>
+            <p>Wind: ${Math.round(wind.speed)} mph</p>
+            <p>Humidity: ${Math.round(main.humidity)}</p>
+            <p>Current Temp: ${Math.round(main.temp)}&deg;F</p>
+            <p>High: ${Math.round(main.temp_max)}&deg;F</p>
+            <p>Low: ${Math.round(main.temp_min)}&deg;F</p>
         </div>
         `;
     }
@@ -43,15 +43,15 @@ export class WeatherCard extends React.Component<{ weatherDetails: any}, any> {
             const iconPath: string = config.iconBaseUrl.replace('{ICON}', list[i].weather[0].icon);
             daysReplaceString += `
             <p>
-            ${moment(list[i].dt_txt).format("MMM Do YY")}
+            <span class="weight--bold">${moment(list[i].dt_txt).format("MMM Do YYYY")}</span>
             <br />
-            <img class="icon" src="${iconPath}"></img> H:${list[i].main.temp_max} L:${list[i].main.temp_min}
+            <img class="icon" src="${iconPath}"></img> H:${Math.round(list[i].main.temp_max)}&deg;F L:${Math.round(list[i].main.temp_min)}&deg;F
             </p>
             `;
         }
         return `
         <div class="condition-card">
-            <h4 class="center">${name}</h4>
+            <h4 class="center weight--bold">${name}</h4>
             ${daysReplaceString}
         </div>
         `;
@@ -60,7 +60,7 @@ export class WeatherCard extends React.Component<{ weatherDetails: any}, any> {
     public render(): any {
         return (
         <div>
-            <div className="form-group block-margin--right" dangerouslySetInnerHTML={{__html: (this.props.weatherDetails && this.props.weatherDetails.current) ? this.buildCurrentConditionsCard(this.props.weatherDetails.current.name, this.props.weatherDetails.current.main, this.props.weatherDetails.current.wind, this.props.weatherDetails.current.weather) : ''}}></div>
+            <div className="form-group block-margin--right" dangerouslySetInnerHTML={{__html: (this.props.weatherDetails && this.props.weatherDetails.current) ? this.buildCurrentConditionsCard(this.props.weatherDetails.current.name, this.props.weatherDetails.current.main, this.props.weatherDetails.current.wind, this.props.weatherDetails.current.weather, this.props.weatherDetails.current.sys) : ''}}></div>
             <div className="form-group block-margin--right" dangerouslySetInnerHTML={{__html: (this.props.weatherDetails && this.props.weatherDetails.fiveDay) ? this.buildForecastCard(this.props.weatherDetails.fiveDay.city.name, this.props.weatherDetails.fiveDay.list) : ''}}></div>
         </div>
     )

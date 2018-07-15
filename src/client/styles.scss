@@ -12,54 +12,27 @@
 	background: $background-color;
 	color: $default-font-color;
 	font: 100% Arial, Sans Serif;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-	overflow-x: hidden;
 }
 
 .center {
     text-align: center;
 }
-  
-.container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 50%;
-    .input-wrapper {
-        margin: 0 auto;
-        text-align: center;
-        border: 1px solid gray;
-        border-radius: 10px;
-        box-shadow: 2px 2px 3px gray;
-        background-color: rgba(245, 245, 245, 0.7);
-        padding: 8px;
-    }
+
+.weight--bold {
+    font-weight: bold;
 }
-
-@media only screen and (max-width: 900px) {
-    html, body {
-        font: 80% Arial, Sans Serif;
-    }
-
-    .container {
-        width: 90%;
-        height: 100%;
-        position: static;
-        top: unset;
-        left: unset;
-        transform: none;
-    }
-
-    .condition-card {
-        width: 90%;
-    }
-
-    .icon {
-        width: 30%;
-    }
+  
+.input-wrapper {
+    margin: 10px auto;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 3px gray;
+    background-color: rgba(245, 245, 245, 0.7);
+    padding: 8px;
+    width: 50%;
 }
 
 /* ## OVERRIDES ## */
@@ -78,6 +51,25 @@
     box-shadow: 2px 2px 3px grey;
     background-color: rgba(245, 245, 245, 0.8);
     padding: 8px;
-    margin-top: 8px;
-    width: 100%;
+    margin: 10px auto;
+    width: 50%;
+}
+
+/* ## Mobile Overrides ## */
+@media only screen and (max-width: 724px) {
+    html, body {
+        font-size: 90%;
+    }
+
+    .icon {
+        width: 20%;
+    }
+
+    .condition-card {
+        width: 95%;
+    }
+
+    .input-wrapper {
+        width: 95%;
+    }
 }
