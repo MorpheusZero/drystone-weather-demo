@@ -1,6 +1,8 @@
 # DrystoneWeatherDemo
 An OpenWeatherMap API Implementation Demo Test
 
+TEST
+
 ## Tech Stack
 
 To build this demo application, we utilized the following base technologies in our stack (in no particular order):
